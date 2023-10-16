@@ -8,7 +8,7 @@ from django.conf import settings
 urlpatterns = [
     path("add/", addView.as_view(), name="add-details"),
     path("", ShowData.as_view(), name="show"),
-    path("/<str:showType>/", views.sort_list, name="showsortlist"),
+    path("<str:showType>/", views.sort_list, name="showsortlist"),
 
     path("update-details/<slug:slug>",
          UpdateDetails.as_view(), name="update-details"),
