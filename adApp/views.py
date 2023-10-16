@@ -30,7 +30,7 @@ class addView(LoginRequiredMixin, CreateView, FormView,):
         return redirect(reverse("show"))
 
 
-class ShowData(LoginRequiredMixin, ListView):
+class ShowData(ListView):
     model = ListDetails
     template_name = "index.html"
     context_object_name = "showdetails"
