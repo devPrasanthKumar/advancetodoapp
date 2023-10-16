@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
@@ -28,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
+load_dotenv()
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "adApp",
     'admin_honeypot',
+    "python-dotenv",
 
 ]
 
@@ -149,3 +153,14 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 
 }
+
+
+
+#EMAIL
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
