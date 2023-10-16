@@ -30,11 +30,11 @@ class addView(LoginRequiredMixin, CreateView, FormView,):
         return redirect(reverse("show"))
 
 
-class ShowData(ListView):
+class ShowData(LoginRequiredMixin, ListView):
     model = ListDetails
+    login_url = "login"
     template_name = "index.html"
     context_object_name = "showdetails"
-    login_url = "login"
 
     def get_queryset(self):
         user = self.request.user
@@ -100,7 +100,7 @@ def sort_list(request, showType):
 # authentication
 
 
-class SignInView(CreateView, FormView):
+class SignInView(FormView):
     model = CustomUser
     form_class = SignInForm
     template_name = "sign.html"

@@ -7,8 +7,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path("add/", addView.as_view(), name="add-details"),
+    path("signin/", SignInView.as_view(), name="signin"),
     path("index/", ShowData.as_view(), name="show"),
-    path("<str:showType>/", views.sort_list, name="showsortlist"),
+    path("index/<str:showType>/", views.sort_list, name="showsortlist"),
 
     path("update-details/<slug:slug>",
          UpdateDetails.as_view(), name="update-details"),
@@ -17,7 +18,6 @@ urlpatterns = [
 
 
     # auth
-    path("signin/", SignInView.as_view(), name="signin"),
     path("", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 

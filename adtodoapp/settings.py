@@ -25,7 +25,7 @@ SECRET_KEY = "@neaux^*!@z5q%&^=^#+-)s8vb3xni^+qyp)@jg^lk=us-zgc9"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["advancetodoapp.onrender.com"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -137,7 +136,9 @@ AUTH_USER_MODEL = "adApp.CustomUser"
 
 
 # log
-LOGOUT_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login"
+
+LOGIN_URL = "login"
 
 
 # messages
