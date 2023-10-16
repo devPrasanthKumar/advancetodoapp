@@ -47,8 +47,6 @@ class ShowData(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
-        for item in context["showdetails"]:
-            item.remaining_days = (item.due_date - today).days
         pendigTask = ListDetails.objects.filter(is_finished=False).count()
         finishedTask = ListDetails.objects.filter(is_finished=True).count()
         context["pendingTask"] = pendigTask
