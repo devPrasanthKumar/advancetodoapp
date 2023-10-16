@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/user_prfile.css' %}" />
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div
+            class="rounded-top text-white d-flex flex-row"
+            style="background-color: #e2cfcf; height: 200px">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px">
+             <a
+                  class="dropdown-item"
+                  href="{{user.userIMG.url}}"
+                  >
+                <img
+                alt="Generic placeholder image"
+                src = "{{request.user.userIMG.url}}"
+                class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1" /> </a>
+                </div>
+            <div class = "my-5 mx-5" style="margin-top: 130px">
+              
+
+            </div>
+          </div>
+          <div class="card-body p-4 mt-5 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4" style="background-color: #f8f9fa">
+              
+                <p class="font-italic mb-1">user name : {{request.user.username}} </p>
+                <p class="font-italic mb-1">Email : {{request.user.email}}</p>
+                <p class="font-italic mb-0">Status : {% if request.user.is_active %} Online {%else%} offline {% endif%}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

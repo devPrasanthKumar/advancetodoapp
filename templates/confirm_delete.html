@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <p>Are you sure you wanna delete it</p>
+
+      <a href="{% url 'show' %}">
+        <button type="submit" class="btn btn-primary">cancel</button></a
+      >
+
+      <form action="" method="post">
+        {% csrf_token %}
+        <a href="{% url 'delete-details' showdetails.slug %}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
