@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path("add/", addView.as_view(), name="add-details"),
-    path("", ShowData.as_view(), name="show"),
+    path("index/", ShowData.as_view(), name="show"),
     path("<str:showType>/", views.sort_list, name="showsortlist"),
 
     path("update-details/<slug:slug>",
@@ -18,7 +18,7 @@ urlpatterns = [
 
     # auth
     path("signin/", SignInView.as_view(), name="signin"),
-    path("login", LoginView.as_view(), name="login"),
+    path("", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 
     # password rest generator
