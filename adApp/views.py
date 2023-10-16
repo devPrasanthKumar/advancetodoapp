@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, CreateView, FormView, ListView, UpdateView, DeleteView
 from .models import ListDetails, CustomUser
-from .forms import FormForListDetails
+from .forms import FormForListDetails, LoginForm, UserEditForm
 from datetime import date
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
@@ -137,3 +137,26 @@ class LoginView(FormView):
 class UserProfile(LoginRequiredMixin, TemplateView):
     login_url = "login"
     template_name = "user_profile.html"
+
+
+class UserSettings(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    login_url = "login"
+    template_name = "auth/user_settings.html"
+    success_url = reverse_lazy("show")
+    form_class = UserEditForm
+
+    def get_object(self, **kwargs):
+        token = self.kwargs.get("uuid")
+        print(token)
+        return get_object_or_404(CustomUser, uuid=token)
+
+    def get_success_url(self):
+        return reverse("user-profile")
+
+
+class CustomChangePassword(LoginRequiredMixin, PasswordChangeView):
+    form_class = PasswordChangeForm
+    login_url = "login"
+    template_name = "auth/change_password.html"
+    success_url = reverse_lazy("show")

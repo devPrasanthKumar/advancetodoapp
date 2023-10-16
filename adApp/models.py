@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
-
+import uuid
 # Create your models here.
 
 from django.conf import settings
@@ -37,6 +37,6 @@ class ListDetails(models.Model):
         super().delete()
 
 
-
 class CustomUser(AbstractUser):
     userIMG = models.ImageField(upload_to="uploads")
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)

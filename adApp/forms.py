@@ -59,3 +59,16 @@ class LoginForm(AuthenticationForm):
     )
 
 
+class UserEditForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = CustomUser
+        fields = ["username", "email", "userIMG"]
+
+    common_attrs = {"class": "form-control"}
+
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            if field_name:
+                self.fields[field_name].widget.attrs.update(self.common_attrs)
