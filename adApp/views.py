@@ -47,8 +47,10 @@ class ShowData(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
-        pendigTask = ListDetails.objects.filter(is_finished=False).count()
-        finishedTask = ListDetails.objects.filter(is_finished=True).count()
+        pendigTask = ListDetails.objects.filter(
+            is_finished=False, owner=self.request.user).count()
+        finishedTask = ListDetails.objects.filter(
+            is_finished=True, owner=self.request.user).count()
         context["pendingTask"] = pendigTask
         context["finishedTask"] = finishedTask
 
@@ -142,7 +144,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
 class UserSettings(LoginRequiredMixin, UpdateView):
     model = CustomUser
     login_url = "login"
-    template_name = "auth/user_settings.html"
+    template_name = "user_settings.html"
     success_url = reverse_lazy("show")
     form_class = UserEditForm
 
@@ -158,5 +160,5 @@ class UserSettings(LoginRequiredMixin, UpdateView):
 class CustomChangePassword(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordChangeForm
     login_url = "login"
-    template_name = "auth/change_password.html"
+    template_name = "change_password.html"
     success_url = reverse_lazy("show")
