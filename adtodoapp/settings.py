@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "adApp",
     'admin_honeypot',
-    "python-dotenv",
 
 ]
 
@@ -155,8 +154,7 @@ MESSAGE_TAGS = {
 }
 
 
-
-#EMAIL
+# EMAIL
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
