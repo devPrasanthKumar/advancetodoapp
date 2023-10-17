@@ -124,7 +124,7 @@
                   <th scope="col">Ttitle</th>
                   <th scope="col">Task</th>
                   <th scope="col">Priority</th>
-                  <th scope="col">Upload Date</th>
+                  <th scope="col">Due Date</th>
                   <th scope="col">File</th>
                   <th scope="col text-center">Remaing Days</th>
 
@@ -156,9 +156,13 @@
                   </td>
                   <td class="align-middle">{{i.due_date}}</td>
                   
+                  {% if i.fileUpload %}
                   <td class="align-middle">
                     <a href="{{i.fileUpload.url}}">click to See</a>
                   </td>
+                  {% else %}
+                  <td>no file</td>
+                  {% endif %}
 
                   <td class="align-middle">{{i.remaining_days}} days left</td>
                   <td class="align-middle">

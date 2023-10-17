@@ -69,6 +69,7 @@
             
             <button class="btn  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
+                {% if request.user.userIMG %}
                    <img
                    src = "{{user.userIMG.url}}"
             class="rounded-circle"
@@ -77,6 +78,18 @@
             loading="lazy"
           />
             </button>
+            {% else %}
+
+                   <img
+                   src = ""
+            class="rounded-circle"
+            height="45"
+            alt="{{request.user}}"
+            loading="lazy"
+          />
+
+          {% endif %}
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="triggerId">
               <ul
           class="dropdown-menu dropdown-menu-end"

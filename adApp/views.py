@@ -90,13 +90,15 @@ def sort_list(request, showType):
     getFilterData = request.POST.get("sortList")
     orderData = ListDetails.objects.all()
     if getFilterData == "completed":
-        orderData = ListDetails.objects.filter(is_finished=True)
+        orderData = ListDetails.objects.filter(
+            is_finished=True, owner=request.user)
         return render(request, "index.html", {"showdetails": orderData})
     elif getFilterData == "pending":
-        orderData = ListDetails.objects.filter(is_finished=False)
+        orderData = ListDetails.objects.filter(
+            is_finished=False, owner=request.user)
         return render(request, "index.html", {"showdetails": orderData})
     else:
-        orderData = ListDetails.objects.all()
+        orderData = ListDetails.objects.filter(owner=request.user)
         return render(request, "index.html", {"showdetails": orderData})
 
 # authentication
@@ -151,7 +153,8 @@ class UserSettings(LoginRequiredMixin, UpdateView):
     def get_object(self, **kwargs):
         token = self.kwargs.get("uuid")
         print(token)
-        return get_object_or_404(CustomUser, uuid=token)
+        user = get_object_or_404(CustomUser, uuid=token)
+        return user
 
     def get_success_url(self):
         return reverse("user-profile")
