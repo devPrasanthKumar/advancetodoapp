@@ -1,12 +1,14 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <div class="container">
   <div class="row justify-content-center align-items-center g-2">
     <div class="col-lg-6">
-      
-      <a href="{% url 'show' %}" class="btn btn-light">
-          Back
-        </a>
+      <a
+        href="{% url 'show' %}"
+        class="btn btn-light mt-4 col-lg-2 offset-lg-3">
+        Back to Home
+      </a>
       <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 

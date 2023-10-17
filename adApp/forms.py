@@ -6,9 +6,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 class FormForListDetails(forms.ModelForm):
 
     due_date = forms.DateField(
-            widget=forms.TextInput(attrs={"type": "date"}))
+        widget=forms.TextInput(attrs={"type": "date"}))
     fileUpload = forms.FileField(required=False)
-
 
     class Meta:
         model = ListDetails
@@ -17,7 +16,7 @@ class FormForListDetails(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(FormForListDetails, self).__init__(*args, **kwargs)
-        
+
         # Define common widget attributes for all fields
         common_widget_attrs = {"class": "form-control"}
 
@@ -25,9 +24,8 @@ class FormForListDetails(forms.ModelForm):
         for field_name, field in self.fields.items():
             print(field_name)
             if field_name:
-                self.fields[field_name].widget.attrs.update(common_widget_attrs)
-
-
+                self.fields[field_name].widget.attrs.update(
+                    common_widget_attrs)
 
 
 class SignInForm(UserCreationForm):
