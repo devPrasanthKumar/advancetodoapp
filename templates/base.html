@@ -63,7 +63,7 @@
           <!-- Avatar -->
           <div class="btn-group">
             
-            <button class="btn  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+            <button class="btn" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 {% if request.user.userIMG %}
                    <img
@@ -76,9 +76,9 @@
             </button>
             {% else %}
 
-                   <img
+             <img
                    src = ""
-            class="rounded-circle"
+            class="rounded-circle fs-5"
             height="45"
             alt="{{request.user}}"
             loading="lazy"
@@ -86,25 +86,12 @@
 
           {% endif %}
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="triggerId">
-              <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuAvatar"
-        >
-          </li>
-          <li>
-          </li>
-        </ul>
-            <a class="dropdown-item " href="{% url 'user-profile' %}">Settings</a>
-            <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
-            </div>
-          </div>
+           
 
-        <div class="dropdown open">
          
-        </a>
-        
       </div>
+         <a class="btn fs-6 p-2 mx-5 text-light" style="background-color: rgb(85, 83, 83)" href="{% url 'user-profile' %}">Settings</a>
+         
     </div>
           
             {% else %}

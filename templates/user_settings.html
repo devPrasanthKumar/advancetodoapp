@@ -1,5 +1,4 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="container">
   <div class="row justify-content-center align-items-center g-2">
@@ -19,8 +18,11 @@
           <li class="list-group my-2">
             {{ form.email.label_tag }} {{form.email}}
           </li>
+          {% if form.userIMG %}
           <li class="list-group my-2">{{form.userIMG}}</li>
-
+          {% else %}
+          <li class="list-group my-2">No image</li>
+          {% endif %}
           <br />
 
           {{ form.password.label_tag }}
