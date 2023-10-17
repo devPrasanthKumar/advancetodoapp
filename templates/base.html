@@ -36,19 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Navbar brand -->
           <a class="navbar-brand mt-2 mt-lg-0" href="#">
-            TODOAPP
-          </a>
+            TODO App 
+                   </a>
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             
             {% if request.user.is_authenticated %}
-            <li class="nav-item">
-    <a class="dropdown-item mt-2 mx-5" href="{% url 'logout' %}"
-                >
-                 <button class="btn btn-dark shadow w-100 rounded-pill ">Log out</button>
-                </a
-              >
-            </li>
+  
           </ul>
           <!-- Left links -->
         </div>
@@ -57,27 +51,33 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
           <!-- Icon -->
-          <a class="text-reset me-3" href="#">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
+         
           <!-- Avatar -->
           <div class="btn-group">
             
             <button class="btn" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                {% if request.user.userIMG %}
+           
+           
+
+         
+      </div>
+
+      <div class="btn-group mx-5">
+        <button class="btn btn-secondary mx-5  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+                   {% if request.user.userIMG %}
                    <img
                    src = "{{user.userIMG.url}}"
             class="rounded-circle"
             height="45"
-            alt="Img"
+            alt="{{request.user}}"
             loading="lazy"
           />
-            </button>
             {% else %}
 
              <img
-                   src = ""
+            src = ""
             class="rounded-circle fs-5"
             height="45"
             alt="{{request.user}}"
@@ -86,32 +86,19 @@
 
           {% endif %}
 
-           
+            
+        </button>
+        <div class="dropdown-menu dropdown-menu-start mx-5" aria-labelledby="triggerId">
+         <a class="dropdown-item" href="{% url 'user-profile' %}">Settings</a>
+         <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
 
-         
+
+        </div>
       </div>
-         <a class="btn fs-6 p-2 mx-5 text-light" style="background-color: rgb(85, 83, 83)" href="{% url 'user-profile' %}">Settings</a>
+
+
          
     </div>
-          
-            {% else %}
-            <ul class="navbar-nav me-auto mb-2 mt-2 mb-lg-0 mx-5">
-              <li class="nav-item">
-                <a class="dropdown-item mx-5 " href="{% url 'login' %}">
-                  
-                  <button class="btn btn-dark w-100 rounded-pill ">Log In</button>
-                  
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="dropdown-item mx-5 " href="{% url 'signin' %}">
-                   
-                 <button class="btn btn-light shadow w-100 rounded-pill ">sign In</button>
-                  
-                </a>
-              </li>
-            </ul>
-
             {% endif %}
           </div>
         </div>
