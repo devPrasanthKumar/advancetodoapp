@@ -13,11 +13,10 @@ class ListDetails(models.Model):
 
     PRIORTY_LEVEL = [("High", "High"), ("Medium", "Medium"), ("Low", "Low")]
 
-    title = models.CharField(max_length=300)
-    slug = models.SlugField(unique=True)
     desc = models.CharField(max_length=300)
+    slug = models.SlugField(unique=True)
     updateDate = models.DateField(default=timezone.now)
-    due_date = models.DateField(default=timezone.now)
+    due_date = models.DateField(default=timezone.now, null=True, blank=True)
     is_finished = models.BooleanField(default=False)
     fileUpload = models.FileField(upload_to="uploads/", default=None)
     priority = models.CharField(choices=PRIORTY_LEVEL, max_length=30)
@@ -29,7 +28,7 @@ class ListDetails(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.desc)
         super(ListDetails, self).save(*args, **kwargs)
 
     def delete(self):

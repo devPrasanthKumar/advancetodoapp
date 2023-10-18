@@ -5,9 +5,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 class FormForListDetails(forms.ModelForm):
 
-    due_date = forms.DateField(
-        widget=forms.TextInput(attrs={"type": "date"}))
+    due_date = forms.DateField(required=False,
+                               widget=forms.TextInput(attrs={"type": "date"}))
     fileUpload = forms.FileField(required=False)
+    desc = forms.CharField(label="Enter :")
 
     class Meta:
         model = ListDetails

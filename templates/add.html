@@ -22,10 +22,6 @@
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
-          <label for="text1">{{form.title.label_tag}}</label>
-          {{form.title}}
-        </div>
-        <div class="mb-3">
           <label for="text2">{{form.desc.label_tag}}</label>
           {{form.desc}}
         </div>
