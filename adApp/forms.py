@@ -18,10 +18,8 @@ class FormForListDetails(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(FormForListDetails, self).__init__(*args, **kwargs)
 
-        # Define common widget attributes for all fields
         common_widget_attrs = {"class": "form-control"}
 
-        # Loop through fields and assign common attributes to widgets
         for field_name, field in self.fields.items():
             print(field_name)
             if field_name:

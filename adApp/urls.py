@@ -8,17 +8,13 @@ urlpatterns = [
     path("signin/", SignInView.as_view(), name="signin"),
     path("index/", ShowData.as_view(), name="show"),
     path("index/<str:showType>/", views.sort_list, name="showsortlist"),
-
     path("update-details/<slug:slug>",
          UpdateDetails.as_view(), name="update-details"),
     path("delete-details/<slug:slug>",
          DeleteDetails.as_view(), name="delete-details"),
-
-
     # auth
     path("", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
-
     # password rest generator
     path("password-reset", PasswordResetView.as_view(
         template_name="password-reset.html"), name="password-reset"),
