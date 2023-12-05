@@ -73,7 +73,6 @@ class UpdateDetails(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        # Redirect to the 'show' page after successful update
         messages.success(self.request, "Updated Successfully ")
         return reverse("show")
 

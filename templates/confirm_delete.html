@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
-{% block title %} ToDo | Delete {% endblock %}
-
-{% block content %}
-
+ {% block title %} ToDo | Delete {% endblock %}
+  {%block content %}
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
-      <p>Are you sure you wanna delete it</p>
+    <div class="col-lg-6 col-md-8 mt-5 rounded   col-sm-10 mx-auto shadow">
+      <p class="mt-4 text-center">Are you sure you want to delete it?</p>
 
-      <a href="{% url 'show' %}">
-        <button type="submit" class="btn btn-primary">cancel</button></a
-      >
+      <div class="d-flex justify-content-center mb-3 mt-3">
+        <a href="{% url 'show' %}" class="btn btn-primary me-2">Cancel</a>
 
-      <form action="" method="post">
-        {% csrf_token %}
-        <a href="{% url 'delete-details' showdetails.slug %}">
+        <form
+          action="{% url 'delete-details' showdetails.slug %}"
+          method="post">
+          {% csrf_token %}
           <button type="submit" class="btn btn-danger">Delete</button>
-        </a>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
 {% endblock %}

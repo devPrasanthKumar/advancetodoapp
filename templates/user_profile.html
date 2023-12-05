@@ -1,59 +1,51 @@
-{% extends 'base.html' %} {% load static %} 
+{% extends 'base.html' %}
+{% load static %}
+
 {% block title %} ToDo | User {% endblock %}
 
 {% block content %}
-
 <link rel="stylesheet" href="{% static 'user_profile.css' %}" />
 
-    <a href="{% url 'show' %}" class="btn btn-light mt-4 col-lg-2 offset-lg-3">
-      Back to Home
-    </a>
+<a href="{% url 'show' %}" class="btn btn-light mt-4 col-lg-2 offset-lg-3">
+  Back to Home
+</a>
+
 <section class="h-100 gradient-custom-2">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-lg-9 col-xl-7">
+      <div class="col-lg-9 col-xl-7">
         <div class="card">
-          <div
-            class="rounded-top text-white d-flex flex-row"
-            style="background-color: #555555; height: 200px">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #555555; height: 200px">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px">
-            {% if request.user.userIMG %}
-              <a
-                  class="dropdown-item"
-                  href="{{request.user.userIMG.url}}"
-                  >
-                <img
-                alt="Generic placeholder image"
-                src = "{{request.user.userIMG.url}}"
-                class="img-fluid img-thumbnail mt-4 mb-2"
-                style="width: 150px; z-index: 1" /> </a>
-                </div>
-            <div class = "my-5 mx-5" style="margin-top: 130px">
+              {% if request.user.userIMG %}
+              <a class="dropdown-item" href="{{request.user.userIMG.url}}">
+                <img alt="Generic placeholder image" src="{{request.user.userIMG.url}}" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" />
+              </a>
+            </div>
+            <div class="my-5 mx-5" style="margin-top: 130px">
               {% else %}
-                No image
-                <img
-                src = "data:image/png;base64,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"
+              No image
+              <img src="data:image/png;base64,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"
                 style="width: 150px; z-index: 1" /> 
               </a>
-                </div>
-            <div class = "my-5 mx-5" style="margin-top: 130px">
-              {% endif %}
             </div>
           </div>
+          {% endif %}
           <div class="card-body p-4 mt-5 text-black">
             <div class="mb-5">
-            <a href="{% url 'userSettings' request.user.uuid %}">Edit profile</a>
+              <a href="{% url 'userSettings' request.user.uuid %}">Edit profile</a>
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4" style="background-color: #f8f9fa">
-              
-                <p class="font-italic mb-1">user name : {{request.user.username}} </p>
-                <p class="font-italic mb-1">Email : {{request.user.email}}</p>
-                <p class="font-italic mb-0">Status : {% if request.user.is_active %} Online {%else%} offline {% endif%}</p>
+                <p class="font-italic mb-1">User name: {{request.user.username}}</p>
+                <p class="font-italic mb-1">Email: {{request.user.email}}</p>
+                <p class="font-italic mb-0">Status: {% if request.user.is_active %}Online{% else %}Offline{% endif %}</p>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 {% endblock %}
